@@ -2,8 +2,8 @@ from flask import Flask, render_template, request, url_for
 import joblib,sys
 import sqlite3,smtplib
 
-my_mail = "rizzpython@gmail.com"
-app_pass = "zafqvfsooxqtdnul"
+my_mail = "YOUR EMAIL"
+app_pass = "YOUR APP PASSWORD"
 
 
 random_forest = joblib.load("models/random_f.lb")
