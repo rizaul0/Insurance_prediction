@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insurance Prediction Form</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+   <style>
+       body {
+		height: 100%;
+		background-color: #ffffff;
+		background-image: url("overlay.png"), -moz-linear-gradient(60deg, rgba(255, 165, 150, 0.5) 5%, rgba(0, 228, 255, 0.35)), url("bg.jpg");
+		background-image: url("overlay.png"), -webkit-linear-gradient(60deg, rgba(255, 165, 150, 0.5) 5%, rgba(0, 228, 255, 0.35)), url("bg.jpg");
+		background-image: url("overlay.png"), -ms-linear-gradient(60deg, rgba(255, 165, 150, 0.5) 5%, rgba(0, 228, 255, 0.35)), url("bg.jpg");
+		background-image: url("overlay.png"), linear-gradient(60deg, rgba(255, 165, 150, 0.5) 5%, rgba(0, 228, 255, 0.35)), url("bg.jpg");
+		background-repeat: repeat,			no-repeat,			no-repeat;
+		background-size: 100px 100px, cover,				cover;
+		background-position: top left,		center center,		bottom center;
+		background-attachment: fixed,			fixed,				fixed;
+	}
+</style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Insurance Prediction Form</h2>
+        <form id="insuranceForm" action="{{ url_for('side') }}" method="post">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="number" class="form-control" id="age" name="age" required>
+            </div>
+            <div class="form-group">
+                <label for="bmi">BMI:</label>
+                <input type="number" step="1" class="form-control" id="bmi" name="bmi" required>
+            </div>
+            <div class="form-group">
+                <label for="children">Number of Children:</label>
+                <select class="form-control" id="children" name="children" required>
+                    <option value=0>0</option>
+                    <option value=1>1</option>
+                    <option value=2>2</option>
+                    <option value=3>3</option>
+                    <option value=4>4</option>
+                    <option value=5>5</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="gender">Gender:</label>
+                <select class="form-control" id="gender" name="gender" required>
+                    <option value=Male>Male</option>
+                    <option value=Female>Female</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="smoke">Do you smoke?</label>
+                <select class="form-control" id="smoke" name="smoke" required>
+                    <option value="NO">NO</option>
+                    <option value="YES">YES</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="health">Health Category:</label>
+                <select class="form-control" id="health" name="health" required>
+                    <option value="HealthyWeight">HealthyWeight</option>
+                    <option value="Underweight">Underweight</option>
+                    <option value="Overweight">Overweight</option>
+                    <option value="Obese">Obese</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="region">Region:</label>
+                <select class="form-control" id="region" name="region" required>
+                    <option value="Southwest">Southwest</option>
+                    <option value="Southeast">Southeast</option>
+                    <option value="Northwest">Northwest</option>
+                    <option value="Northeast">Northeast</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Predict Insurance Cost</button>
+        </form>
+
+        <!-- Creator Details Section -->
+<!--        <div class="mt-5">-->
+<!--            <h3>About the Creator</h3>-->
+<!--            <div class="media">-->
+<!--                <img src="creator_image.jpg" class="mr-3" alt="Creator Image" style="width:150px;">-->
+<!--                <div class="media-body">-->
+<!--                    <h5 class="mt-0">John Doe</h5>-->
+<!--                    <p>John Doe is a software developer with a passion for creating innovative web applications. He has extensive experience in front-end and back-end development, specializing in creating user-friendly interfaces and efficient server-side logic.</p>-->
+<!--                    <p>Contact: john.doe@example.com</p>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#insuranceForm").on("submit", function(event){
+                event.preventDefault();
+                const formData = $(this).serialize();
+                $.post("{{ url_for('side') }}", formData, function(data){
+                    alert("Prediction sent to your Email Successfully!");
+                    console.log(data);
+                });
+            });
+        });
+    </script>
+<!--    <script>-->
+<!--    document.getElementById('emailForm').addEventListener('submit', function(event) {-->
+<!--      event.preventDefault();-->
+
+<!--      document.getElementById('successMessage').style.display = 'block';-->
+<!--      document.getElementById('errorMessage').style.display = 'none';-->
+<!--    });-->
+<!--  </script>-->
+</body>
+</html>
